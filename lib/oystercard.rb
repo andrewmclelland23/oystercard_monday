@@ -11,8 +11,12 @@ class Oystercard
 
   def top_up(money)
     new_balance = @balance + money
-    @exception.max_balance_exception(MAX_BALANCE) unless new_balance <= MAX_BALANCE
+    balance_limit_check(new_balance)
     @balance = new_balance
+  end
+
+  def balance_limit_check(balance)
+    @exception.max_balance_exception(balance) unless balance <= MAX_BALANCE
   end
 
 end
